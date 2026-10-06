@@ -39,8 +39,10 @@
     .nav { width: min(1280px, calc(100% - 64px)); height: 78px; margin: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
     .nav-links { display: flex; align-items: center; gap: 27px; color: #4c4e47; font-size: 12px; }
     .nav-links a:hover, .footer-links a:hover { color: var(--red); }
-    .brand { text-align: center; font-family: var(--serif); font-size: 29px; font-weight: 700; letter-spacing: .06em; line-height: 1; }
-    .brand small { display: block; margin-top: 6px; font-family: var(--sans); font-size: 8px; font-weight: 600; letter-spacing: .27em; }
+    .brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--serif); font-size: 19px; font-weight: 700; line-height: 1; }
+    .brand-mark { width: 43px; height: 43px; flex: 0 0 auto; object-fit: contain; }
+    .brand-copy { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .brand small { display: block; font-family: var(--sans); font-size: 8px; font-weight: 600; letter-spacing: .19em; }
     .nav-actions { display: flex; justify-content: flex-end; align-items: center; gap: 18px; }
     .icon-button { display: inline-flex; position: relative; width: 38px; height: 38px; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer; }
     .icon-button svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
@@ -90,7 +92,8 @@
     .product-details { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 14px 1px; }
     .product-details h3 { margin-bottom: 5px; font-family: var(--serif); font-size: 16px; font-weight: 500; }
     .product-details p { margin: 0; color: var(--muted); font-size: 10px; }
-    .price { flex: 0 0 auto; padding-top: 3px; font-size: 11px; font-weight: 600; }
+    .price { display: flex; flex: 0 0 auto; flex-direction: column; align-items: flex-end; gap: 3px; padding-top: 3px; font-size: 11px; font-weight: 600; }
+    .old-price { color: var(--muted); font-size: 9px; font-weight: 400; text-decoration: line-through; }
     .empty-state { grid-column: 1 / -1; padding: 48px 10px; color: var(--muted); text-align: center; }
 
     .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 365px; background: #ede9df; }
@@ -112,8 +115,10 @@
 
     footer { background: var(--green); color: white; }
     .footer-main { display: flex; width: min(1280px, calc(100% - 64px)); justify-content: space-between; gap: 35px; margin: auto; padding: 46px 0 37px; }
-    .footer-brand { font-family: var(--serif); font-size: 27px; }
-    .footer-brand small { display: block; margin-top: 7px; color: #c6d0c4; font-family: var(--sans); font-size: 8px; letter-spacing: .22em; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 20px; }
+    .footer-brand img { width: 43px; height: 43px; object-fit: contain; }
+    .footer-brand span { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .footer-brand small { display: block; color: #c6d0c4; font-family: var(--sans); font-size: 8px; letter-spacing: .19em; }
     .footer-note { max-width: 245px; margin: 14px 0 0; color: #d1d9d0; font-size: 10px; line-height: 1.7; }
     .footer-links { display: flex; gap: 32px; align-items: flex-start; padding-top: 7px; font-size: 10px; }
     .footer-links a:hover { color: var(--yellow); }
@@ -158,7 +163,9 @@
       .nav-links { display: none; position: absolute; top: 64px; right: 0; left: 0; flex-direction: column; align-items: stretch; gap: 0; border-bottom: 1px solid var(--line); padding: 6px 22px 13px; background: var(--paper); }
       .nav-links.open { display: flex; }
       .nav-links a { padding: 11px 2px; }
-      .brand { font-size: 25px; }
+      .brand { gap: 5px; font-size: 16px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .brand-copy { gap: 4px; }
       .brand small { font-size: 7px; }
       .nav-actions { gap: 4px; }
       .icon-button { width: 34px; height: 36px; }
@@ -206,11 +213,12 @@
         <a href="#collection">Shop all</a>
         <a href="#collection" data-nav-filter="Silk">Silk saris</a>
         <a href="#story">Our story</a>
+        <a href="order.html">Order</a>
       </div>
       <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
       </button>
-      <a class="brand" href="#top" aria-label="Nandini Unique Boutique home">NANDINI<small>UNIQUE BOUTIQUE</small></a>
+      <a class="brand" href="#top" aria-label="Nandini Unique Boutique home"><img class="brand-mark" src="https://nandhiniunique.com/assets/nandini-logo.svg" alt=""><span class="brand-copy">NANDINI<small>UNIQUE BOUTIQUE</small></span></a>
       <div class="nav-actions">
         <button class="icon-button" id="cart-open" aria-label="Open shopping bag">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
@@ -255,7 +263,7 @@
         <button class="filter" type="button" aria-pressed="false" data-filter="Festive">Festive</button>
         <button class="filter" type="button" aria-pressed="false" data-filter="Everyday">Everyday</button>
       </div>
-      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      <div class="product-grid" id="product-grid" aria-live="polite"><p class="empty-state">Loading the collection...</p></div>
     </section>
 
     <section class="story" id="story" aria-labelledby="story-title">
@@ -276,8 +284,8 @@
 
   <footer>
     <div class="footer-main">
-      <div><a class="footer-brand" href="#top">NANDINI<small>UNIQUE BOUTIQUE</small></a><p class="footer-note">A small edit of beautiful saris, chosen with a lot of heart.</p></div>
-      <div class="footer-links"><a href="#collection">Shop saris</a><a href="#story">Our story</a><a href="mailto:nandhiniuniqueboutique@gmail.com">Email us</a></div>
+      <div><a class="footer-brand" href="#top"><img src="https://nandhiniunique.com/assets/nandini-logo.svg" alt=""><span>NANDINI<small>UNIQUE BOUTIQUE</small></span></a><p class="footer-note">A small edit of beautiful saris, chosen with a lot of heart.</p></div>
+      <div class="footer-links"><a href="#collection">Shop saris</a><a href="order.html">Order enquiry</a><a href="#story">Our story</a><a href="mailto:nandhiniuniqueboutique@gmail.com">Email us</a></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Nandini Unique Boutique. Made with care.</span><span>Beautifully draped, wherever you are.</span></div>
   </footer>
@@ -292,17 +300,23 @@
 
   <script>
     const STORE_WHATSAPP = "917411211052";
-    const products = [
-      { id: "gulmohar", name: "Gulmohar Silk", detail: "Silk blend · Rust red", price: 3890, category: "Silk", tag: "A little festive", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=750&q=80", alt: "Rust and gold festive sari" },
-      { id: "neel", name: "Neel Akash Cotton", detail: "Soft cotton · Indigo", price: 2190, category: "Cotton", tag: "Easy favourite", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=750&q=80", alt: "Blue Indian sari with traditional details" },
-      { id: "champa", name: "Champa Garden", detail: "Silk blend · Floral", price: 3290, category: "Festive", tag: "Just arrived", image: "https://images.pexels.com/photos/30004204/pexels-photo-30004204.jpeg?auto=compress&cs=tinysrgb&w=900", alt: "Black and gold sari photographed outdoors" },
-      { id: "saanjh", name: "Saanjh Cotton", detail: "Handloom cotton · Rose", price: 1890, category: "Everyday", tag: "Everyday lovely", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=750&q=80&sat=-15", alt: "Rose-toned draped sari" }
-    ];
+    let products = [];
     const cart = new Map();
     let activeFilter = "All";
     let toastTimer;
 
-    const formatPrice = amount => `₹${amount.toLocaleString("en-IN")}`;
+    const formatPrice = amount => `₹${Number(amount).toLocaleString("en-IN")}`;
+    const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+
+    function safeImageURL(value) {
+      try {
+        const url = new URL(String(value || ""), location.href);
+        return url.protocol === "https:" || url.origin === location.origin ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+
     const grid = document.getElementById("product-grid");
     const cartPanel = document.getElementById("cart-panel");
     const overlay = document.getElementById("overlay");
@@ -312,16 +326,16 @@
       grid.innerHTML = visibleProducts.map(product => `
         <article class="product-card">
           <div class="product-photo">
-            <img src="${product.image}" alt="${product.alt}" loading="lazy">
-            <span class="product-tag">${product.tag}</span>
-            <button class="quick-add" type="button" data-add="${product.id}" aria-label="Add ${product.name} to bag">Add to bag +</button>
+            <img src="${escapeHTML(safeImageURL(product.image))}" alt="${escapeHTML(product.alt)}" loading="lazy">
+            <span class="product-tag">${escapeHTML(product.tag)}</span>
+            <button class="quick-add" type="button" data-add="${escapeHTML(product.id)}" aria-label="Add ${escapeHTML(product.name)} to bag">Add to bag +</button>
           </div>
-          <div class="product-details"><div><h3>${product.name}</h3><p>${product.detail}</p></div><span class="price">${formatPrice(product.price)}</span></div>
+          <div class="product-details"><div><h3>${escapeHTML(product.name)}</h3><p>${escapeHTML(product.detail)}</p></div><span class="price">${formatPrice(product.price)}${product.originalPrice ? `<del class="old-price">${formatPrice(product.originalPrice)}</del>` : ""}</span></div>
         </article>`).join("");
     }
 
     function renderCart() {
-      const items = [...cart.entries()];
+      const items = [...cart.entries()].filter(([id]) => products.some(product => product.id === id));
       const count = items.reduce((total, [, quantity]) => total + quantity, 0);
       const subtotal = items.reduce((total, [id, quantity]) => total + products.find(product => product.id === id).price * quantity, 0);
       document.getElementById("bag-count").textContent = count;
@@ -329,8 +343,22 @@
       document.getElementById("cart-total").textContent = formatPrice(subtotal);
       document.getElementById("cart-items").innerHTML = items.length ? items.map(([id, quantity]) => {
         const product = products.find(item => item.id === id);
-        return `<div class="cart-row"><img src="${product.image}" alt=""><div><h3>${product.name}</h3><p>${quantity} × ${formatPrice(product.price)}</p></div><button class="remove-item" type="button" data-remove="${id}" aria-label="Remove ${product.name}">Remove</button></div>`;
+        return `<div class="cart-row"><img src="${escapeHTML(safeImageURL(product.image))}" alt=""><div><h3>${escapeHTML(product.name)}</h3><p>${quantity} × ${formatPrice(product.price)}</p></div><button class="remove-item" type="button" data-remove="${escapeHTML(id)}" aria-label="Remove ${escapeHTML(product.name)}">Remove</button></div>`;
       }).join("") : '<p class="cart-empty">Your bag is taking a little breather. Browse the edit and add a sari you love.</p>';
+    }
+
+    async function loadProducts() {
+      try {
+        const response = await fetch(`./products.json?${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("Catalog request failed");
+        const catalog = await response.json();
+        if (!Array.isArray(catalog)) throw new Error("Catalog format is invalid");
+        products = catalog;
+        renderProducts();
+        renderCart();
+      } catch {
+        grid.innerHTML = '<p class="empty-state">The collection could not be loaded. Please try again shortly.</p>';
+      }
     }
 
     function showToast(message) {
@@ -402,13 +430,8 @@
         showToast("Add your WhatsApp Business number in the store settings before launch.");
         return;
       }
-      const order = [...cart.entries()].map(([id, quantity]) => {
-        const product = products.find(item => item.id === id);
-        return `${product.name} × ${quantity} — ${formatPrice(product.price * quantity)}`;
-      }).join("\n");
-      const total = [...cart.entries()].reduce((sum, [id, quantity]) => sum + products.find(item => item.id === id).price * quantity, 0);
-      const message = `Hello! I'd like to enquire about:\n${order}\nSubtotal: ${formatPrice(total)}`;
-      window.open(`https://wa.me/${STORE_WHATSAPP.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+      sessionStorage.setItem("nandini-order-cart", JSON.stringify([...cart.entries()]));
+      window.location.href = "order.html";
     });
 
     document.getElementById("newsletter-form").addEventListener("submit", event => {
@@ -417,8 +440,7 @@
       showToast("Thank you. Newsletter sign-up needs an email service to go live.");
     });
 
-    renderProducts();
-    renderCart();
+    loadProducts();
   </script>
 </body>
 </html>
