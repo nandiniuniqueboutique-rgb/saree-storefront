@@ -1,10 +1,10 @@
-# SUTRI Saree House
+# Nandini Unique Boutique
 
 A responsive, no-build storefront in `index.html`. It can be uploaded as-is to standard web hosting or served with GitHub Pages.
 
 ## Before launch
 
-This is a storefront prototype. The brand name, product names, photos, prices, delivery statements, and other shop copy are sample content; replace them with your business's real information. The bag is client-side only: there is no inventory, payment processing, or order database.
+This is a storefront prototype. Product names, photos, prices, and other shop copy are sample content; replace them with your business's real information. The bag is client-side only: there is no inventory, payment processing, or order database.
 
 To connect order enquiries to WhatsApp, set `STORE_WHATSAPP` near the start of the script in `index.html` to your business number in international digits, without `+`, spaces, or punctuation. For example, use the format `91XXXXXXXXXX` for an Indian number. The newsletter form is also a visual demo and needs an email service before it can collect subscribers.
 
@@ -27,7 +27,7 @@ Create a repository in your signed-in GitHub account, then, from this project fo
 ```sh
 git init -b main
 git add index.html README.md
-git commit -m "Create SUTRI saree storefront"
+git commit -m "Create Nandini saree storefront"
 git remote add origin https://github.com/USERNAME/REPOSITORY.git
 git push -u origin main
 ```
