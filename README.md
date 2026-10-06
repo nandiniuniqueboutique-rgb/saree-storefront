@@ -34,4 +34,4 @@ git push -u origin main
 
 If Git asks for your author name or email, configure `git config --global user.name` and `git config --global user.email` with your own details. GitHub may prompt you to authenticate the first time you push.
 
-To publish from GitHub Pages, open the repository's **Settings > Pages**, choose **Deploy from a branch**, and select `main` and `/(root)`. GitHub will show the published URL there. A GoDaddy domain can be connected later through the repository's Pages custom-domain setting and the DNS records GitHub specifies for that domain.
+The repository includes a GitHub Actions workflow that deploys `index.html` whenever a commit is pushed to `main`. In **Settings > Pages**, choose **GitHub Actions** as the build source. GitHub will show the published URL there. A GoDaddy domain can be connected through the repository's Pages custom-domain setting and the matching DNS record in GoDaddy.
