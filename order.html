@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f6f0">
-  <meta name="description" content="Send your Nandini Unique Boutique sari order enquiry.">
+  <meta name="description" content="Send your Nandini Unique Boutique saree order enquiry.">
   <title>Order Enquiry | Nandini Unique Boutique</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,7 @@
   <main>
     <span class="eyebrow">A note for the boutique</span>
     <h1>Order enquiry</h1>
-    <p class="intro">Review your sari selection and send your delivery details to Nandini Unique on WhatsApp. Your enquiry is not saved on this website.</p>
+    <p class="intro">Review your saree selection and send your delivery details to Nandini Unique on WhatsApp. Your enquiry is not saved on this website.</p>
     <div class="order-layout">
       <section class="order-summary" aria-labelledby="summary-title">
         <h2 id="summary-title">Your selection</h2>
@@ -110,7 +110,7 @@
       orderItems.innerHTML = items.length ? items.map(([id, quantity]) => {
         const product = products.find(item => item.id === id);
         return `<article class="order-item"><img src="${escapeHTML(safeImageURL(product.image))}" alt="${escapeHTML(product.alt)}"><div><h3>${escapeHTML(product.name)}</h3><p>${escapeHTML(product.detail)}</p><div class="quantity"><button type="button" data-step="-1" data-id="${escapeHTML(product.id)}" aria-label="Remove one ${escapeHTML(product.name)}">−</button><span>${quantity}</span><button type="button" data-step="1" data-id="${escapeHTML(product.id)}" aria-label="Add one ${escapeHTML(product.name)}">+</button></div></div><strong class="line-total">${formatPrice(product.price * quantity)}</strong></article>`;
-      }).join("") : '<p class="empty-state">Your selection is empty. <a href="index.html#collection">Browse the sari edit</a>.</p>';
+      }).join("") : '<p class="empty-state">Your selection is empty. <a href="index.html#collection">Browse the saree edit</a>.</p>';
     }
 
     orderItems.addEventListener("click", event => {
