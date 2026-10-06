@@ -18,7 +18,7 @@ A GoDaddy domain by itself does not include web hosting. With a GoDaddy Linux/cP
 4. Upload `index.html` into `public_html` (not inside another folder).
 5. Visit your domain over HTTPS and confirm the page loads. If the domain is not connected to the plan, follow GoDaddy's domain/hosting connection instructions in that account first.
 
-The site uses externally hosted Unsplash photos and Google Fonts, so those assets require an internet connection.
+The site uses externally hosted Unsplash and Pexels photos plus Google Fonts, so those assets require an internet connection.
 
 ## Upload to GitHub
 
