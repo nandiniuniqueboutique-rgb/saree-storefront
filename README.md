@@ -2,6 +2,8 @@
 
 A responsive, no-build storefront in `index.html`. It can be uploaded as-is to standard web hosting or served with GitHub Pages.
 
+Live site: https://store.nandhiniunique.com
+
 ## Before launch
 
 This is a storefront prototype. Product names, photos, prices, and other shop copy are sample content; replace them with your business's real information. The bag is client-side only: there is no inventory, payment processing, or order database.
@@ -34,4 +36,4 @@ git push -u origin main
 
 If Git asks for your author name or email, configure `git config --global user.name` and `git config --global user.email` with your own details. GitHub may prompt you to authenticate the first time you push.
 
-The repository includes a GitHub Actions workflow that deploys `index.html` whenever a commit is pushed to `main`. In **Settings > Pages**, choose **GitHub Actions** as the build source. GitHub will show the published URL there. A GoDaddy domain can be connected through the repository's Pages custom-domain setting and the matching DNS record in GoDaddy.
+The repository includes a GitHub Actions workflow that deploys `index.html` whenever a commit is pushed to `main`. In **Settings > Pages**, choose **GitHub Actions** as the build source. The `store.nandhiniunique.com` subdomain is connected to this Pages site through GoDaddy DNS. The existing root domain and `www` records remain connected to the original Netlify site.
