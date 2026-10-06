@@ -152,7 +152,9 @@
         const response = await fetch(`./products.json?${Date.now()}`, { cache: "no-store" });
         if (!response.ok) throw new Error("Catalog unavailable");
         products = await response.json();
-        cart = new Map(JSON.parse(sessionStorage.getItem(CART_KEY) || "[]"));
+        const savedCart = JSON.parse(sessionStorage.getItem(CART_KEY) || "[]");
+        cart = new Map(Array.isArray(savedCart) ? savedCart.filter(([id, quantity]) => products.some(product => product.id === id) && Number.isInteger(quantity) && quantity > 0) : []);
+        sessionStorage.setItem(CART_KEY, JSON.stringify([...cart.entries()]));
         renderOrder();
       } catch {
         orderItems.innerHTML = '<p class="empty-state">The catalog could not be loaded. <a href="index.html">Return to the shop</a>.</p>';
