@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="Send your Nandini Unique Boutique sari order enquiry.">
+  <title>Order Enquiry | Nandini Unique Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper: #f8f6f0; --ink: #22251e; --muted: #74766d; --line: #deddd4; --green: #234d3c; --red: #d54a35; --white: #fffefa; --serif: "Playfair Display", Georgia, serif; --sans: "DM Sans", Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .topbar { display: flex; height: 76px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 0 max(22px, calc((100vw - 1160px) / 2)); }
+    .brand { display: inline-flex; align-items: center; gap: 9px; }
+    .brand img { width: 43px; height: 43px; object-fit: contain; }
+    .brand span { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--serif); font-size: 18px; font-weight: 700; }
+    .brand small { font-family: var(--sans); font-size: 8px; letter-spacing: .18em; }
+    .back-link { color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    main { width: min(1100px, calc(100% - 44px)); margin: 0 auto; padding: 58px 0 80px; }
+    .eyebrow { color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin: 13px 0 10px; font-family: var(--serif); font-size: clamp(38px, 5vw, 56px); font-weight: 500; }
+    .intro { max-width: 610px; margin-bottom: 34px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .order-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr); gap: 54px; align-items: start; }
+    .order-summary h2, .customer-form h2 { margin-bottom: 18px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .order-items { border-top: 1px solid var(--line); }
+    .order-item { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); padding: 15px 0; }
+    .order-item img { width: 76px; height: 96px; object-fit: cover; background: #e8e0d4; }
+    .order-item h3 { margin-bottom: 5px; font-family: var(--serif); font-size: 15px; font-weight: 500; }
+    .order-item p { margin-bottom: 10px; color: var(--muted); font-size: 10px; }
+    .quantity { display: inline-flex; height: 28px; align-items: center; border: 1px solid var(--line); }
+    .quantity button { width: 29px; height: 26px; border: 0; background: transparent; cursor: pointer; }
+    .quantity span { min-width: 20px; text-align: center; font-size: 11px; }
+    .line-total { align-self: start; padding-top: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .summary-total { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 18px 0; font-size: 13px; }
+    .empty-state { padding: 24px 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .empty-state a { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .customer-form { border-top: 2px solid var(--green); padding-top: 20px; }
+    .field { display: grid; gap: 7px; margin-bottom: 15px; }
+    .field label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .field input, .field textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 0; padding: 11px 12px; background: var(--white); color: var(--ink); font-size: 12px; }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .form-note { margin: 2px 0 18px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+    .button { display: inline-flex; width: 100%; min-height: 48px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--green); background: var(--green); color: white; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .button:hover:not(:disabled) { border-color: var(--red); background: var(--red); }
+    .button:disabled { opacity: .45; cursor: not-allowed; }
+    .button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
+    .status { min-height: 18px; margin-top: 12px; color: var(--green); font-size: 11px; }
+    @media (max-width: 760px) { main { padding-top: 43px; } .order-layout { grid-template-columns: 1fr; gap: 39px; } .customer-form { grid-row: 1; } }
+    @media (max-width: 420px) { .topbar { height: 68px; padding: 0 15px; } main { width: calc(100% - 30px); } .brand img { width: 36px; height: 36px; } .brand span { font-size: 15px; } .order-item { grid-template-columns: 62px minmax(0,1fr) auto; gap: 10px; } .order-item img { width: 62px; height: 82px; } .line-total { font-size: 10px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Nandini Unique Boutique home"><img src="https://nandhiniunique.com/assets/nandini-logo.svg" alt=""><span>NANDINI<small>UNIQUE BOUTIQUE</small></span></a>
+    <a class="back-link" href="index.html">Back to shop</a>
+  </header>
+  <main>
+    <span class="eyebrow">A note for the boutique</span>
+    <h1>Order enquiry</h1>
+    <p class="intro">Review your sari selection and send your delivery details to Nandini Unique on WhatsApp. Your enquiry is not saved on this website.</p>
+    <div class="order-layout">
+      <section class="order-summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Your selection</h2>
+        <div class="order-items" id="order-items"><p class="empty-state">Loading your selection...</p></div>
+        <div class="summary-total"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+      </section>
+      <form class="customer-form" id="order-form">
+        <h2>Delivery details</h2>
+        <div class="field"><label for="customer-name">Full name</label><input id="customer-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="customer-phone">WhatsApp or mobile</label><input id="customer-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="customer-address">Delivery address</label><textarea id="customer-address" name="address" autocomplete="street-address" required></textarea></div>
+        <div class="field"><label for="customer-city">City and PIN code</label><input id="customer-city" name="city" autocomplete="postal-code" required></div>
+        <div class="field"><label for="customer-note">Note for the boutique</label><textarea id="customer-note" name="note" placeholder="Optional"></textarea></div>
+        <p class="form-note">Submitting opens WhatsApp with your enquiry and subtotal. Payment, availability, and delivery are confirmed by the boutique.</p>
+        <button class="button" id="send-order" type="submit" disabled>Send enquiry on WhatsApp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+  <script>
+    const STORE_WHATSAPP = "917411211052";
+    const CART_KEY = "nandini-order-cart";
+    const formatPrice = amount => `₹${Number(amount).toLocaleString("en-IN")}`;
+    const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+    function safeImageURL(value) {
+      try {
+        const url = new URL(String(value || ""), location.href);
+        return url.protocol === "https:" || url.origin === location.origin ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+    const orderItems = document.getElementById("order-items");
+    const sendButton = document.getElementById("send-order");
+    let products = [];
+    let cart = new Map();
+
+    function renderOrder() {
+      const items = [...cart.entries()].filter(([id, quantity]) => quantity > 0 && products.some(product => product.id === id));
+      const total = items.reduce((sum, [id, quantity]) => sum + products.find(product => product.id === id).price * quantity, 0);
+      document.getElementById("subtotal").textContent = formatPrice(total);
+      sendButton.disabled = items.length === 0;
+      orderItems.innerHTML = items.length ? items.map(([id, quantity]) => {
+        const product = products.find(item => item.id === id);
+        return `<article class="order-item"><img src="${escapeHTML(safeImageURL(product.image))}" alt="${escapeHTML(product.alt)}"><div><h3>${escapeHTML(product.name)}</h3><p>${escapeHTML(product.detail)}</p><div class="quantity"><button type="button" data-step="-1" data-id="${escapeHTML(product.id)}" aria-label="Remove one ${escapeHTML(product.name)}">−</button><span>${quantity}</span><button type="button" data-step="1" data-id="${escapeHTML(product.id)}" aria-label="Add one ${escapeHTML(product.name)}">+</button></div></div><strong class="line-total">${formatPrice(product.price * quantity)}</strong></article>`;
+      }).join("") : '<p class="empty-state">Your selection is empty. <a href="index.html#collection">Browse the sari edit</a>.</p>';
+    }
+
+    orderItems.addEventListener("click", event => {
+      const button = event.target.closest("[data-step]");
+      if (!button) return;
+      const id = button.dataset.id;
+      const quantity = Math.max(0, (cart.get(id) || 0) + Number(button.dataset.step));
+      if (quantity) cart.set(id, quantity);
+      else cart.delete(id);
+      sessionStorage.setItem(CART_KEY, JSON.stringify([...cart.entries()]));
+      renderOrder();
+    });
+
+    document.getElementById("order-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const items = [...cart.entries()].map(([id, quantity]) => {
+        const product = products.find(item => item.id === id);
+        return `${product.name} × ${quantity} — ${formatPrice(product.price * quantity)}`;
+      }).join("\n");
+      const total = [...cart.entries()].reduce((sum, [id, quantity]) => sum + products.find(item => item.id === id).price * quantity, 0);
+      const message = [
+        "Hello Nandini Unique, I'd like to place an order enquiry.",
+        `Name: ${form.get("name")}`,
+        `Phone: ${form.get("phone")}`,
+        `Address: ${form.get("address")}`,
+        `City / PIN: ${form.get("city")}`,
+        "Items:",
+        items,
+        `Subtotal: ${formatPrice(total)}`,
+        form.get("note") ? `Note: ${form.get("note")}` : ""
+      ].filter(Boolean).join("\n");
+      window.open(`https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+      document.getElementById("status").textContent = "WhatsApp opened with your enquiry. The boutique will confirm availability and delivery.";
+    });
+
+    async function loadOrder() {
+      try {
+        const response = await fetch(`./products.json?${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("Catalog unavailable");
+        products = await response.json();
+        cart = new Map(JSON.parse(sessionStorage.getItem(CART_KEY) || "[]"));
+        renderOrder();
+      } catch {
+        orderItems.innerHTML = '<p class="empty-state">The catalog could not be loaded. <a href="index.html">Return to the shop</a>.</p>';
+      }
+    }
+
+    loadOrder();
+  </script>
+</body>
+</html>

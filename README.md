@@ -1,39 +1,21 @@
 # Nandini Unique Boutique
 
-A responsive, no-build storefront in `index.html`. It can be uploaded as-is to standard web hosting or served with GitHub Pages.
+Live storefront: https://store.nandhiniunique.com
 
-Live site: https://store.nandhiniunique.com
+## Orders
 
-## Before launch
+`order.html` carries the cart into a delivery form and opens a WhatsApp enquiry to the number already published on the existing Nandini Unique site. The form does not save customer details or take payment; the boutique confirms availability and delivery in WhatsApp.
 
-This is a storefront prototype. Product names, photos, prices, and other shop copy are sample content; replace them with your business's real information. The bag is client-side only: there is no inventory, payment processing, or order database.
+## Catalog Admin
 
-The WhatsApp enquiry link and email link use the contact details currently shown on the existing Nandini Unique site. Confirm those are still correct before launch. The newsletter form is a visual demo and needs an email service before it can collect subscribers.
+Open https://store.nandhiniunique.com/admin.html. Create a GitHub fine-grained personal access token limited to `nandiniuniqueboutique-rgb/saree-storefront` with **Contents: Read and write**, then connect from the admin page. The token is kept in that browser tab's session storage and is never committed to the repository.
 
-## Publish on GoDaddy hosting
+The admin can add, edit, and remove products, resize and upload product photos, and update `products.json`. Each change commits to `main`; GitHub Actions publishes the storefront and uploaded images. The repository is public, so catalog entries and uploaded product photos are public too. Never store customer details or payment information in it.
 
-A GoDaddy domain by itself does not include web hosting. With a GoDaddy Linux/cPanel hosting plan:
+The catalog starts with the product names and prices shown on the current public shop. Confirm availability and prices before selling. Starter catalog photos are representative; upload accurate product photos from the admin page. The newsletter form is visual only and needs an email service before it can collect subscribers.
 
-1. Sign in to GoDaddy and open **My Products**.
-2. Open **Web Hosting** and choose **Manage** for the hosting plan connected to your domain.
-3. Open **cPanel Admin**, then **File Manager**, and open `public_html`.
-4. Upload `index.html` into `public_html` (not inside another folder).
-5. Visit your domain over HTTPS and confirm the page loads. If the domain is not connected to the plan, follow GoDaddy's domain/hosting connection instructions in that account first.
+## Hosting
 
-The site uses externally hosted Unsplash and Pexels photos plus Google Fonts, so those assets require an internet connection.
+GitHub Pages hosts the storefront. GoDaddy DNS maps `store.nandhiniunique.com` to that site; HTTPS is enforced. The existing root domain and `www` records remain pointed at the original Netlify site. No GoDaddy web-hosting plan is used.
 
-## Upload to GitHub
-
-Create a repository in your signed-in GitHub account, then, from this project folder, run the following after replacing the URL with your new repository URL:
-
-```sh
-git init -b main
-git add index.html README.md
-git commit -m "Create Nandini saree storefront"
-git remote add origin https://github.com/USERNAME/REPOSITORY.git
-git push -u origin main
-```
-
-If Git asks for your author name or email, configure `git config --global user.name` and `git config --global user.email` with your own details. GitHub may prompt you to authenticate the first time you push.
-
-The repository includes a GitHub Actions workflow that deploys `index.html` whenever a commit is pushed to `main`. In **Settings > Pages**, choose **GitHub Actions** as the build source. The `store.nandhiniunique.com` subdomain is connected to this Pages site through GoDaddy DNS. The existing root domain and `www` records remain connected to the original Netlify site.
+The Pages workflow is `.github/workflows/pages.yml`; it publishes `index.html`, `products.json`, `order.html`, `admin.html`, and any files under `images/` on pushes to `main`. Photos and fonts use external providers and require an internet connection.
