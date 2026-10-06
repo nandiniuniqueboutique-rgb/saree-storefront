@@ -6,7 +6,7 @@ A responsive, no-build storefront in `index.html`. It can be uploaded as-is to s
 
 This is a storefront prototype. Product names, photos, prices, and other shop copy are sample content; replace them with your business's real information. The bag is client-side only: there is no inventory, payment processing, or order database.
 
-To connect order enquiries to WhatsApp, set `STORE_WHATSAPP` near the start of the script in `index.html` to your business number in international digits, without `+`, spaces, or punctuation. For example, use the format `91XXXXXXXXXX` for an Indian number. The newsletter form is also a visual demo and needs an email service before it can collect subscribers.
+The WhatsApp enquiry link and email link use the contact details currently shown on the existing Nandini Unique site. Confirm those are still correct before launch. The newsletter form is a visual demo and needs an email service before it can collect subscribers.
 
 ## Publish on GoDaddy hosting
 
