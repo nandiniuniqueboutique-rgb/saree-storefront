@@ -10,7 +10,7 @@ Live storefront: https://store.nandhiniunique.com
 
 Open https://store.nandhiniunique.com/admin.html. Create a GitHub fine-grained personal access token limited to `nandiniuniqueboutique-rgb/saree-storefront` with **Contents: Read and write**, then connect from the admin page. The token is kept in that browser tab's session storage and is never committed to the repository.
 
-The admin can add, edit, and remove products, resize and upload product photos, and update `products.json`. Each change commits to `main`; GitHub Actions publishes the storefront and uploaded images. The repository is public, so catalog entries and uploaded product photos are public too. Never store customer details or payment information in it.
+The admin can add, edit, and remove products (sarees or dresses), write a description for each, upload up to 6 photos per product (the first is the cover), and update `products.json`. Customers open a product from the shop to see its photos and description. The admin page also explains how to create the token. Each change commits to `main`; GitHub Actions publishes the storefront and uploaded images. The repository is public, so catalog entries and uploaded product photos are public too. Never store customer details or payment information in it.
 
 The catalog starts with the product names and prices shown on the current public shop. Confirm availability and prices before selling. Starter catalog photos are representative; upload accurate product photos from the admin page. The "A lovely note now and then" section opens a WhatsApp message to the boutique number asking for new-arrival updates, so no email service is needed. The floating "Chat with us" button uses the same number.
 

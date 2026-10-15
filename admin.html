@@ -13,10 +13,10 @@
     :root { --paper: #f8f6f0; --ink: #22251e; --muted: #74766d; --line: #deddd4; --green: #234d3c; --red: #d54a35; --white: #fffefa; --serif: "Playfair Display", Georgia, serif; --sans: "DM Sans", Arial, sans-serif; }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 13px; }
-    button, input, select { font: inherit; }
+    button, input, select, textarea { font: inherit; }
     a { color: inherit; text-decoration: none; }
     [hidden] { display: none !important; }
-    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
     .topbar { display: flex; height: 70px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 0 max(22px, calc((100vw - 1200px) / 2)); background: var(--paper); }
     .brand { display: inline-flex; align-items: center; gap: 9px; }
     .brand img { width: 40px; height: 40px; object-fit: contain; }
@@ -43,7 +43,8 @@
     .connect-form { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 9px; align-items: end; }
     .field { display: grid; gap: 7px; }
     .field label { font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .field input, .field select { width: 100%; min-height: 40px; border: 1px solid var(--line); border-radius: 0; padding: 9px 11px; background: var(--white); color: var(--ink); font-size: 11px; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 40px; border: 1px solid var(--line); border-radius: 0; padding: 9px 11px; background: var(--white); color: var(--ink); font-size: 16px; }
+    .field textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
     .field-help { grid-column: 1 / -1; }
     .connection-status { align-self: center; min-height: 16px; color: var(--green); font-size: 10px; }
     .connection-status.error { color: var(--red); }
@@ -70,6 +71,18 @@
     .dialog-body .wide { grid-column: 1 / -1; }
     .photo-preview { width: 100%; height: 150px; border: 1px solid var(--line); background: var(--white); object-fit: contain; }
     .dialog-actions { display: flex; justify-content: flex-end; gap: 9px; border-top: 1px solid var(--line); padding: 15px 20px; }
+    .token-help { grid-column: 1 / -1; font-size: 11px; line-height: 1.7; }
+    .token-help summary { color: var(--green); font-weight: 700; cursor: pointer; }
+    .token-help ol { margin: 9px 0 0; padding-left: 20px; color: #55574e; }
+    .token-help a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin-top: 4px; }
+    .photo-tile { display: grid; gap: 5px; }
+    .photo-tile img { width: 100%; aspect-ratio: 3 / 4; border: 1px solid var(--line); background: var(--white); object-fit: cover; }
+    .photo-tile.cover img { border: 2px solid var(--green); }
+    .photo-tile .badge { color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .photo-tile .tile-actions { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+    .photo-tile button { border: 0; background: transparent; padding: 3px 0; color: var(--green); font-size: 10px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .photo-tile button.remove { color: var(--red); }
     .toast { position: fixed; z-index: 5; right: 20px; bottom: 20px; max-width: min(420px, calc(100% - 40px)); padding: 12px 16px; background: var(--ink); color: white; font-size: 11px; line-height: 1.6; opacity: 0; pointer-events: none; transform: translateY(8px); transition: .2s; }
     .toast.show { opacity: 1; transform: translateY(0); }
     @media (max-width: 660px) {
@@ -108,6 +121,15 @@
         <button class="button" id="connect-button" type="submit">Connect</button>
         <p class="field-help">The token is kept in this browser tab's session only. It is sent directly to api.github.com and is never committed to the site.</p>
       </form>
+      <details class="token-help"><summary>How do I get this token?</summary>
+        <ol>
+          <li>Sign in to GitHub as <strong>nandiniuniqueboutique-rgb</strong>, then open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">the new token page</a>.</li>
+          <li>Name it "Store admin" and choose an expiry (90 days is a good choice).</li>
+          <li>Under <em>Repository access</em> pick <em>Only select repositories</em> and choose <strong>saree-storefront</strong>.</li>
+          <li>Under <em>Repository permissions</em> set <strong>Contents</strong> to <em>Read and write</em>.</li>
+          <li>Click <em>Generate token</em>, copy it and paste it above. You will need a new one when it expires.</li>
+        </ol>
+      </details>
       <p class="connection-status" id="connection-status" role="status" aria-live="polite">Connect to load the live catalog.</p>
     </section>
     <section id="catalog-section" hidden>
@@ -123,10 +145,12 @@
         <div class="field"><label for="product-detail">Fabric or style</label><input id="product-detail" name="detail" required maxlength="100"></div>
         <div class="field"><label for="product-price">Price (INR)</label><input id="product-price" name="price" type="number" min="1" step="1" required></div>
         <div class="field"><label for="product-original">Original price (optional)</label><input id="product-original" name="originalPrice" type="number" min="1" step="1"></div>
-        <div class="field"><label for="product-category">Category</label><select id="product-category" name="category"><option>Silk</option><option>Cotton</option><option>Festive</option><option>Everyday</option></select></div>
-        <div class="field"><label for="product-tag">Label</label><input id="product-tag" name="tag" maxlength="40" placeholder="New arrival"></div>
-        <div class="field wide"><label for="product-photo">Product photo</label><input id="product-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp"><p class="field-help">Images are resized to a maximum 1600px and uploaded to this repository.</p><img class="photo-preview" id="photo-preview" alt="Product photo preview" hidden></div>
-        <div class="field wide"><label for="product-alt">Photo description</label><input id="product-alt" name="alt" maxlength="160" placeholder="Describe the saree shown in the photo" required></div>
+        <div class="field"><label for="product-type">Type</label><select id="product-type" name="type"><option value="Saree">Saree</option><option value="Dress">Dress</option></select></div>
+        <div class="field"><label for="product-category">Category</label><input id="product-category" name="category" list="category-options" required maxlength="40" placeholder="Silk, Cotton, Party wear..."><datalist id="category-options"><option value="Silk"><option value="Cotton"><option value="Festive"><option value="Everyday"><option value="Party wear"><option value="Casual"><option value="Bridal"></datalist></div>
+        <div class="field wide"><label for="product-tag">Label</label><input id="product-tag" name="tag" maxlength="40" placeholder="New arrival"></div>
+        <div class="field wide"><label for="product-description">Product description</label><textarea id="product-description" name="description" maxlength="1500" placeholder="Fabric, colours, border and pallu, blouse piece, length, wash care, anything a customer would ask..."></textarea><p class="field-help">Shown to customers when they open the product. Use new lines to separate points.</p></div>
+        <div class="field wide"><label for="product-photo">Photos</label><input id="product-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" multiple><p class="field-help">Add up to 6 photos. The first one is the cover shown in the shop. Images are resized to a maximum 1600px and uploaded to this repository.</p><div class="photo-grid" id="photo-grid"></div></div>
+        <div class="field wide"><label for="product-alt">Photo description (optional)</label><input id="product-alt" name="alt" maxlength="160" placeholder="Describe what is shown, for screen readers. Defaults to the product name."></div>
       </div>
       <div class="dialog-actions"><button class="button secondary" id="cancel-edit" type="button">Cancel</button><button class="button" id="save-product" type="submit">Save product</button></div>
     </form>
@@ -146,7 +170,9 @@
     const dialog = document.getElementById("product-dialog");
     const productForm = document.getElementById("product-form");
     const photoInput = document.getElementById("product-photo");
-    const photoPreview = document.getElementById("photo-preview");
+    const photoGrid = document.getElementById("photo-grid");
+    const MAX_PHOTOS = 6;
+    let photos = [];
     let token = "";
     let products = [];
     let catalogSha = "";
@@ -228,7 +254,7 @@
       productList.innerHTML = products.length ? products.map(product => `
         <article class="product-row">
           <img src="${escapeHtml(safeImageURL(product.image))}" alt="${escapeHtml(product.alt)}">
-          <div><h3>${escapeHtml(product.name)}</h3><p>${escapeHtml(product.detail)} · ${escapeHtml(product.category)}</p></div>
+          <div><h3>${escapeHtml(product.name)}</h3><p>${escapeHtml(product.detail)} · ${escapeHtml(product.type || "Saree")} · ${escapeHtml(product.category)} · ${(product.images?.length || (product.image ? 1 : 0))} photo${(product.images?.length || 1) === 1 ? "" : "s"}${product.description ? "" : " · no description yet"}</p></div>
           <span class="product-price">${formatPrice(product.price)}</span>
           <div class="row-actions">
             <button class="icon-action" type="button" data-edit="${escapeHtml(product.id)}" aria-label="Edit ${escapeHtml(product.name)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 16-.8 4.8L8 20l11-11-4-4L4 16Z"/><path d="m13.5 6.5 4 4"/></svg></button>
@@ -248,14 +274,14 @@
       return await new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error("Photo conversion failed")), "image/jpeg", 0.86));
     }
 
-    async function uploadPhoto(productId, file) {
+    async function uploadPhoto(productId, file, position) {
       const blob = await resizeImage(file);
       const bytes = new Uint8Array(await blob.arrayBuffer());
       let binary = "";
       for (let offset = 0; offset < bytes.length; offset += 0x8000) {
         binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
       }
-      const filename = `${productId}-${Date.now()}.jpg`;
+      const filename = `${productId}-${Date.now()}-${position + 1}.jpg`;
       const path = `images/products/${filename}`;
       await githubRequest("PUT", `contents/${encodePath(path)}`, {
         message: `Upload product photo: ${productId}`,
@@ -275,23 +301,38 @@
       renderProducts();
     }
 
+    function renderPhotos() {
+      photoGrid.innerHTML = photos.map((photo, index) => `
+        <div class="photo-tile${index === 0 ? " cover" : ""}">
+          <img src="${escapeHtml(photo.preview)}" alt="Photo ${index + 1}">
+          ${index === 0 ? '<span class="badge">Cover</span>' : ""}
+          <div class="tile-actions">
+            ${index === 0 ? "" : `<button type="button" data-cover="${index}">Make cover</button>`}
+            <button class="remove" type="button" data-drop="${index}">Remove</button>
+          </div>
+        </div>`).join("");
+    }
+
     function openProduct(product) {
       editingId = product?.id || "";
       productForm.reset();
-      photoPreview.hidden = true;
-      photoPreview.removeAttribute("src");
+      photoInput.value = "";
+      photos = [];
       document.getElementById("dialog-title").textContent = product ? "Edit product" : "Add product";
       if (product) {
         productForm.elements.name.value = product.name;
         productForm.elements.detail.value = product.detail;
         productForm.elements.price.value = product.price;
         productForm.elements.originalPrice.value = product.originalPrice ?? "";
+        productForm.elements.type.value = product.type === "Dress" ? "Dress" : "Saree";
         productForm.elements.category.value = product.category;
         productForm.elements.tag.value = product.tag || "";
+        productForm.elements.description.value = product.description || "";
         productForm.elements.alt.value = product.alt || "";
-        photoPreview.src = product.image;
-        photoPreview.hidden = !product.image;
+        const saved = Array.isArray(product.images) && product.images.length ? product.images : (product.image ? [product.image] : []);
+        photos = saved.map(image => ({ path: image, preview: image }));
       }
+      renderPhotos();
       dialog.showModal();
     }
 
@@ -330,10 +371,26 @@
     document.getElementById("dialog-close").addEventListener("click", () => dialog.close());
     document.getElementById("cancel-edit").addEventListener("click", () => dialog.close());
     photoInput.addEventListener("change", () => {
-      const file = photoInput.files[0];
-      if (!file) return;
-      photoPreview.src = URL.createObjectURL(file);
-      photoPreview.hidden = false;
+      const room = MAX_PHOTOS - photos.length;
+      const chosen = [...photoInput.files];
+      if (chosen.length > room) showToast(`Only ${MAX_PHOTOS} photos per product. Extra photos were skipped.`);
+      chosen.slice(0, Math.max(0, room)).forEach(file => photos.push({ file, preview: URL.createObjectURL(file) }));
+      photoInput.value = "";
+      renderPhotos();
+    });
+
+    photoGrid.addEventListener("click", event => {
+      const cover = event.target.closest("[data-cover]");
+      const drop = event.target.closest("[data-drop]");
+      if (cover) {
+        const [photo] = photos.splice(Number(cover.dataset.cover), 1);
+        photos.unshift(photo);
+      } else if (drop) {
+        photos.splice(Number(drop.dataset.drop), 1);
+      } else {
+        return;
+      }
+      renderPhotos();
     });
 
     productList.addEventListener("click", async event => {
@@ -364,24 +421,34 @@
       const name = String(form.get("name")).trim();
       const id = editingId || `${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${Date.now().toString(36)}`;
       const existing = products.find(product => product.id === editingId);
-      let image = existing?.image || "";
       try {
-        const file = photoInput.files[0];
-        if (file) {
-          setStatus("Uploading photo to the repository...");
-          image = await uploadPhoto(id, file);
+        if (!photos.length) throw new Error("Add at least one product photo before saving.");
+        const images = [];
+        for (const [index, photo] of photos.entries()) {
+          if (photo.file) {
+            setStatus(`Uploading photo ${index + 1} of ${photos.length}...`);
+            images.push(await uploadPhoto(id, photo.file, index));
+          } else {
+            images.push(photo.path);
+          }
         }
-        if (!image) throw new Error("Choose a product photo before saving.");
+        // Reuse the spelling of an existing category so "silk" and "Silk" do not become two filters.
+        const typedCategory = String(form.get("category")).trim();
+        const knownCategory = products.map(item => item.category).find(category => String(category).toLowerCase() === typedCategory.toLowerCase());
+        const category = knownCategory || (typedCategory.charAt(0).toUpperCase() + typedCategory.slice(1));
         const product = {
           id,
           name,
           detail: String(form.get("detail")).trim(),
+          description: String(form.get("description")).trim(),
+          type: String(form.get("type")) === "Dress" ? "Dress" : "Saree",
           price: Number(form.get("price")),
           originalPrice: form.get("originalPrice") ? Number(form.get("originalPrice")) : null,
-          category: String(form.get("category")),
+          category,
           tag: String(form.get("tag")).trim() || "New arrival",
-          image,
-          alt: String(form.get("alt")).trim()
+          image: images[0],
+          images,
+          alt: String(form.get("alt")).trim() || name
         };
         if (!Number.isFinite(product.price) || product.price <= 0) throw new Error("Enter a valid price.");
         if (existing) products = products.map(item => item.id === editingId ? product : item);
@@ -391,7 +458,7 @@
         setStatus("Catalog saved. GitHub Pages will publish the changes shortly.");
         showToast("Product saved to the store repository.");
       } catch (error) {
-        setStatus(`${error.message}. If the photo uploaded, it will remain in the repository.`, true);
+        setStatus(`${error.message}. If photos were uploaded, they will remain in the repository.`, true);
       } finally {
         saveButton.disabled = false;
       }
