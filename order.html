@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
   <meta name="theme-color" content="#f8f6f0">
   <meta name="description" content="Send your Nandini Unique Boutique saree order enquiry.">
   <title>Order Enquiry | Nandini Unique Boutique</title>
+  <link rel="icon" href="https://nandhiniunique.com/assets/nandini-logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +46,8 @@
     .customer-form { border-top: 2px solid var(--green); padding-top: 20px; }
     .field { display: grid; gap: 7px; margin-bottom: 15px; }
     .field label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .field input, .field textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 0; padding: 11px 12px; background: var(--white); color: var(--ink); font-size: 12px; }
+    .field input, .field textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 0; padding: 11px 12px; background: var(--white); color: var(--ink); font-size: 16px; }
+    .field input:user-invalid, .field textarea:user-invalid { border-color: var(--red); }
     .field textarea { min-height: 90px; resize: vertical; }
     .form-note { margin: 2px 0 18px; color: var(--muted); font-size: 10px; line-height: 1.7; }
     .button { display: inline-flex; width: 100%; min-height: 48px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--green); background: var(--green); color: white; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
@@ -74,7 +77,7 @@
       <form class="customer-form" id="order-form">
         <h2>Delivery details</h2>
         <div class="field"><label for="customer-name">Full name</label><input id="customer-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="customer-phone">WhatsApp or mobile</label><input id="customer-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="customer-phone">WhatsApp or mobile</label><input id="customer-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" minlength="10" pattern="[0-9+\-\s()]{10,}" title="Enter a valid mobile number, for example 98765 43210" required></div>
         <div class="field"><label for="customer-address">Delivery address</label><textarea id="customer-address" name="address" autocomplete="street-address" required></textarea></div>
         <div class="field"><label for="customer-city">City and PIN code</label><input id="customer-city" name="city" autocomplete="postal-code" required></div>
         <div class="field"><label for="customer-note">Note for the boutique</label><textarea id="customer-note" name="note" placeholder="Optional"></textarea></div>

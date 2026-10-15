@@ -12,10 +12,14 @@ Open https://store.nandhiniunique.com/admin.html. Create a GitHub fine-grained p
 
 The admin can add, edit, and remove products, resize and upload product photos, and update `products.json`. Each change commits to `main`; GitHub Actions publishes the storefront and uploaded images. The repository is public, so catalog entries and uploaded product photos are public too. Never store customer details or payment information in it.
 
-The catalog starts with the product names and prices shown on the current public shop. Confirm availability and prices before selling. Starter catalog photos are representative; upload accurate product photos from the admin page. The newsletter form is visual only and needs an email service before it can collect subscribers.
+The catalog starts with the product names and prices shown on the current public shop. Confirm availability and prices before selling. Starter catalog photos are representative; upload accurate product photos from the admin page. The "A lovely note now and then" section opens a WhatsApp message to the boutique number asking for new-arrival updates, so no email service is needed. The floating "Chat with us" button uses the same number.
+
+## Search and sharing
+
+`index.html` carries the page title, description, canonical link, social-share preview tags and basic Store structured data. `robots.txt` and `sitemap.xml` are published alongside it; the order and admin pages are kept out of search results.
 
 ## Hosting
 
 GitHub Pages hosts the storefront. GoDaddy DNS maps `store.nandhiniunique.com` to that site; HTTPS is enforced. The existing root domain and `www` records remain pointed at the original Netlify site. No GoDaddy web-hosting plan is used.
 
-The Pages workflow is `.github/workflows/pages.yml`; it publishes `index.html`, `products.json`, `order.html`, `admin.html`, and any files under `images/` on pushes to `main`. Photos and fonts use external providers and require an internet connection.
+The Pages workflow is `.github/workflows/pages.yml`; it publishes `index.html`, `products.json`, `order.html`, `admin.html`, `robots.txt`, `sitemap.xml`, and any files under `images/` on pushes to `main`. Photos and fonts use external providers and require an internet connection.

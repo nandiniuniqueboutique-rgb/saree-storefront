@@ -27,7 +27,7 @@ jobs:
       - name: Prepare site files
         run: |
           mkdir -p public
-          cp index.html products.json order.html admin.html public/
+          cp index.html products.json order.html admin.html robots.txt sitemap.xml public/
           if [[ -d images ]]; then
             cp -R images public/images
           fi
