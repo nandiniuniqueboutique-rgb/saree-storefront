@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f8f6f0">
+  <title>Owner Login | Nandini Unique Boutique</title>
+  <link rel="icon" href="https://nandhiniunique.com/assets/nandini-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper: #f8f6f0; --ink: #22251e; --muted: #62645b; --line: #deddd4; --green: #234d3c; --red: #d54a35; --amber: #a86a00; --white: #fffefa; --serif: "Playfair Display", Georgia, serif; --sans: "DM Sans", Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; }
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    h1, h2, h3, p { margin-top: 0; }
+    .topbar { display: flex; height: 70px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 0 max(22px, calc((100vw - 1200px) / 2)); background: var(--paper); }
+    .brand { display: inline-flex; align-items: center; gap: 9px; }
+    .brand img { width: 40px; height: 40px; object-fit: contain; }
+    .brand span { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--serif); font-size: 17px; font-weight: 700; }
+    .brand small { font-family: var(--sans); font-size: 9px; letter-spacing: .18em; }
+    .top-links { display: flex; align-items: center; gap: 20px; color: #55574e; font-size: 12px; }
+    .top-links a:hover, .link-button:hover { color: var(--red); }
+    .link-button { border: 0; background: none; padding: 0; color: inherit; font-size: inherit; cursor: pointer; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0 70px; }
+    .eyebrow { color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 9px 0 4px; font-family: var(--serif); font-size: 36px; font-weight: 500; }
+    .button { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--green); padding: 0 17px; background: var(--green); color: white; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+    .button:hover:not(:disabled) { border-color: var(--red); background: var(--red); }
+    .button:disabled { opacity: .5; cursor: not-allowed; }
+    .button.secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+    .button.secondary:hover:not(:disabled) { border-color: var(--green); background: transparent; color: var(--green); }
+    .button.small { min-height: 34px; padding: 0 12px; font-size: 11px; }
+    .field { display: grid; gap: 7px; }
+    .field label, .label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 42px; border: 1px solid var(--line); border-radius: 0; padding: 9px 11px; background: var(--white); color: var(--ink); font-size: 16px; }
+    .field textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+    .help { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .message { min-height: 20px; margin: 12px 0 0; color: var(--green); font-size: 13px; line-height: 1.6; }
+    .message.error { color: #b03a28; }
+
+    /* sign in */
+    .login-wrap { display: grid; min-height: calc(100dvh - 70px); place-items: center; padding: 30px 18px; }
+    .login-card { width: min(420px, 100%); border-top: 3px solid var(--green); padding: 28px 26px 26px; background: var(--white); box-shadow: 0 8px 30px rgb(34 37 30 / 8%); }
+    .login-card h1 { font-size: 32px; }
+    .login-card form { display: grid; gap: 16px; margin-top: 20px; }
+    .login-card .button { width: 100%; }
+    .login-card .back { display: block; margin-top: 18px; color: var(--muted); font-size: 12px; text-align: center; }
+
+    /* tabs */
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 8px; }
+    .tabs { display: flex; gap: 4px; margin: 20px 0 24px; border-bottom: 1px solid var(--line); }
+    .tab { position: relative; border: 0; border-bottom: 3px solid transparent; padding: 11px 16px; background: none; color: var(--muted); font-size: 13px; font-weight: 700; cursor: pointer; }
+    .tab[aria-selected="true"] { border-bottom-color: var(--green); color: var(--green); }
+    .tab .count { display: inline-grid; min-width: 20px; height: 20px; margin-left: 7px; place-items: center; border-radius: 10px; padding: 0 6px; background: var(--red); color: white; font-size: 11px; }
+
+    /* products */
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 14px; }
+    .toolbar h2 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .product-list { border-top: 1px solid var(--line); }
+    .product-row { display: grid; grid-template-columns: 62px minmax(0, 1fr) auto auto auto; align-items: center; gap: 15px; border-bottom: 1px solid var(--line); padding: 12px 0; }
+    .product-row img { width: 62px; height: 73px; object-fit: cover; background: #e8e0d4; }
+    .product-row h3 { margin: 0 0 5px; font-family: var(--serif); font-size: 16px; font-weight: 500; }
+    .product-row p { margin: 0; color: var(--muted); font-size: 12px; }
+    .product-row .price { font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .row-actions { display: flex; gap: 7px; }
+    .icon-action { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .icon-action:hover { border-color: var(--green); color: var(--green); }
+    .icon-action.remove:hover { border-color: var(--red); color: var(--red); }
+    .icon-action svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
+    .stock { border: 1px solid var(--line); padding: 7px 11px; background: var(--white); font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    .stock.in { color: var(--green); }
+    .stock.out { border-color: #e1b2a8; color: #b03a28; }
+    .empty { padding: 30px 0; color: var(--muted); font-size: 13px; }
+
+    dialog { width: min(660px, calc(100% - 24px)); max-height: 92vh; border: 1px solid var(--line); padding: 0; background: var(--paper); color: var(--ink); }
+    dialog::backdrop { background: rgb(18 24 19 / 48%); }
+    .dialog-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 17px 20px; }
+    .dialog-head h2 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .dialog-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 15px; padding: 18px 20px; }
+    .dialog-body .wide { grid-column: 1 / -1; }
+    .dialog-actions { display: flex; align-items: center; justify-content: flex-end; gap: 9px; border-top: 1px solid var(--line); padding: 15px 20px; }
+    .check { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+    .check input { width: 18px; height: 18px; accent-color: var(--green); }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin-top: 4px; }
+    .photo-tile { display: grid; gap: 5px; }
+    .photo-tile .frame { position: relative; aspect-ratio: 3 / 4; border: 1px solid var(--line); background: #e8e0d4; }
+    .photo-tile img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-tile.cover .frame { border: 2px solid var(--green); }
+    .photo-tile .badge { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .photo-tile .busy { position: absolute; inset: 0; display: grid; place-items: center; background: rgb(248 246 240 / 80%); font-size: 11px; font-weight: 700; }
+    .tile-actions { display: flex; flex-wrap: wrap; gap: 3px 10px; }
+    .tile-actions button { border: 0; background: transparent; padding: 3px 0; color: var(--green); font-size: 11px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .tile-actions button.remove { color: var(--red); }
+
+    /* orders */
+    .order-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .order-filters select { min-height: 38px; border: 1px solid var(--line); padding: 0 10px; background: var(--white); font-size: 14px; }
+    .order-card { margin-bottom: 14px; border: 1px solid var(--line); background: var(--white); }
+    .order-card.attention { border-left: 4px solid var(--red); }
+    .order-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; border-bottom: 1px solid var(--line); padding: 13px 16px; }
+    .order-head strong { font-family: var(--serif); font-size: 19px; font-weight: 600; }
+    .order-head time { color: var(--muted); font-size: 12px; }
+    .badge-pill { display: inline-block; border-radius: 12px; padding: 4px 10px; background: #e9efe9; color: var(--green); font-size: 11px; font-weight: 700; }
+    .badge-pill.warn { background: #fbefd6; color: var(--amber); }
+    .badge-pill.bad { background: #f8dcd6; color: #b03a28; }
+    .order-body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; padding: 16px; }
+    .order-body h4 { margin: 0 0 8px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .order-body address { font-style: normal; line-height: 1.7; }
+    .order-body .contact a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+    .order-lines { margin: 0; padding: 0; list-style: none; }
+    .order-lines li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .order-lines img { width: 44px; height: 56px; object-fit: cover; background: #e8e0d4; }
+    .order-sum { display: flex; justify-content: space-between; padding-top: 8px; font-size: 13px; }
+    .order-sum.grand { font-size: 15px; font-weight: 700; }
+    .order-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; border-top: 1px solid var(--line); padding: 14px 16px; background: #fbfaf6; }
+    .order-controls .field { min-width: 150px; }
+    .order-controls .field input, .order-controls .field select { min-height: 38px; font-size: 14px; }
+    .order-controls .grow { flex: 1 1 220px; }
+
+    .account { max-width: 460px; }
+    .account form { display: grid; gap: 16px; margin-top: 18px; }
+    .toast { position: fixed; z-index: 50; right: 20px; bottom: 20px; max-width: min(420px, calc(100% - 40px)); padding: 12px 16px; background: var(--ink); color: white; font-size: 13px; line-height: 1.6; opacity: 0; pointer-events: none; transform: translateY(8px); transition: .2s; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 720px) {
+      .topbar { height: 64px; padding: 0 16px; }
+      .shell { width: calc(100% - 30px); padding-top: 28px; }
+      h1 { font-size: 30px; }
+      .tab { padding: 11px 11px; }
+      .product-row { grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; }
+      .product-row img { width: 52px; height: 65px; }
+      .product-row .price { grid-column: 2; }
+      .product-row .stock { grid-column: 2; justify-self: start; }
+      .row-actions { grid-column: 3; grid-row: 1 / span 3; flex-direction: column; }
+      .dialog-body { grid-template-columns: 1fr; }
+      .dialog-body .wide { grid-column: auto; }
+      .order-body { grid-template-columns: 1fr; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Nandini Unique Boutique home"><img src="https://nandhiniunique.com/assets/nandini-logo.svg" alt=""><span>NANDINI<small>UNIQUE BOUTIQUE</small></span></a>
+    <nav class="top-links" aria-label="Owner navigation">
+      <a href="/">View shop</a>
+      <button class="link-button" id="sign-out-top" type="button" hidden>Sign out</button>
+    </nav>
+  </header>
+
+  <!-- Sign in -->
+  <main class="login-wrap" id="login-view" hidden>
+    <section class="login-card" aria-labelledby="login-title">
+      <span class="eyebrow">Owner area</span>
+      <h1 id="login-title">Sign in</h1>
+      <p class="help">For the boutique owner only. Customers do not need to sign in to shop.</p>
+      <form id="login-form">
+        <div class="field"><label for="login-email">Email</label><input id="login-email" type="email" autocomplete="username" required></div>
+        <div class="field"><label for="login-password">Password</label><input id="login-password" type="password" autocomplete="current-password" required></div>
+        <button class="button" id="login-button" type="submit">Sign in</button>
+        <p class="message" id="login-message" role="alert"></p>
+      </form>
+      <a class="back" href="/">← Back to the shop</a>
+    </section>
+  </main>
+
+  <!-- Owner area -->
+  <main class="shell" id="app-view" hidden>
+    <div class="page-head">
+      <div><span class="eyebrow">Store operations</span><h1>Owner dashboard</h1><p class="help" id="signed-in-as"></p></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Owner sections">
+      <button class="tab" role="tab" id="tab-orders" aria-controls="panel-orders" aria-selected="false" data-tab="orders">Orders<span class="count" id="orders-count" hidden></span></button>
+      <button class="tab" role="tab" id="tab-products" aria-controls="panel-products" aria-selected="true" data-tab="products">Products</button>
+      <button class="tab" role="tab" id="tab-account" aria-controls="panel-account" aria-selected="false" data-tab="account">Account</button>
+    </div>
+
+    <section id="panel-orders" role="tabpanel" aria-labelledby="tab-orders" hidden>
+      <div class="toolbar">
+        <h2>Orders</h2>
+        <div class="order-filters">
+          <label class="label" for="order-filter">Show</label>
+          <select id="order-filter">
+            <option value="">All orders</option>
+            <option value="new">New</option>
+            <option value="awaiting_payment">Awaiting payment</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <button class="button secondary small" id="refresh-orders" type="button">Refresh</button>
+        </div>
+      </div>
+      <div id="order-list"></div>
+    </section>
+
+    <section id="panel-products" role="tabpanel" aria-labelledby="tab-products">
+      <div class="toolbar">
+        <h2>Products <span class="help" id="product-count"></span></h2>
+        <button class="button" id="add-product" type="button">+ Add product</button>
+      </div>
+      <div class="product-list" id="product-list"></div>
+    </section>
+
+    <section id="panel-account" role="tabpanel" aria-labelledby="tab-account" hidden>
+      <div class="account">
+        <div class="toolbar"><h2>Account</h2></div>
+        <p class="help" id="account-email"></p>
+        <form id="password-form">
+          <div class="field"><label for="pw-current">Current password</label><input id="pw-current" type="password" autocomplete="current-password" required></div>
+          <div class="field"><label for="pw-new">New password</label><input id="pw-new" type="password" autocomplete="new-password" minlength="10" required><p class="help">At least 10 characters. A few random words make a strong password.</p></div>
+          <div class="field"><label for="pw-again">New password again</label><input id="pw-again" type="password" autocomplete="new-password" minlength="10" required></div>
+          <div><button class="button" id="pw-button" type="submit">Change password</button></div>
+          <p class="message" id="pw-message" role="status"></p>
+        </form>
+        <p class="help">Changing your password signs you out everywhere else.</p>
+        <p><button class="button secondary" id="sign-out" type="button">Sign out</button></p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="product-dialog" aria-labelledby="dialog-title">
+    <form id="product-form">
+      <div class="dialog-head"><h2 id="dialog-title">Add product</h2><button class="icon-action" id="dialog-close" type="button" aria-label="Close editor"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <div class="dialog-body">
+        <div class="field wide"><label for="product-name">Product name</label><input id="product-name" name="name" required maxlength="90"></div>
+        <div class="field"><label for="product-type">Type</label><select id="product-type" name="type"><option value="Saree">Saree</option><option value="Dress">Dress</option></select></div>
+        <div class="field"><label for="product-category">Category</label><input id="product-category" name="category" list="category-options" required maxlength="40" placeholder="Silk, Cotton, Party wear..."><datalist id="category-options"></datalist></div>
+        <div class="field"><label for="product-detail">Fabric or style</label><input id="product-detail" name="detail" maxlength="100" placeholder="Semi Kanjivaram"></div>
+        <div class="field"><label for="product-tag">Label</label><input id="product-tag" name="tag" maxlength="40" placeholder="New arrival"></div>
+        <div class="field"><label for="product-price">Price (INR)</label><input id="product-price" name="price" type="number" inputmode="numeric" min="1" step="1" required></div>
+        <div class="field"><label for="product-original">Original price (optional)</label><input id="product-original" name="originalPrice" type="number" inputmode="numeric" min="1" step="1"></div>
+        <div class="field wide"><label for="product-description">Product description</label><textarea id="product-description" name="description" maxlength="1500" placeholder="Fabric, colours, border and pallu, blouse piece, length, wash care, anything a customer would ask..."></textarea><p class="help">Shown to customers when they open the product. Use new lines to separate points.</p></div>
+        <div class="field wide"><span class="label" id="photos-label">Photos</span>
+          <input id="product-photo" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-labelledby="photos-label">
+          <p class="help">Up to 6 photos. The first photo is the cover shown in the shop. Photos are resized and uploaded to your server when you pick them.</p>
+          <div class="photo-grid" id="photo-grid"></div>
+        </div>
+        <div class="field wide"><label for="product-alt">Photo description (optional)</label><input id="product-alt" name="alt" maxlength="160" placeholder="Describes the photo for screen readers. Defaults to the product name."></div>
+        <label class="check wide"><input type="checkbox" id="product-instock" name="inStock" checked> Available to order (untick if sold out)</label>
+      </div>
+      <div class="dialog-actions"><span class="message" id="dialog-message" role="alert" style="margin:0 auto 0 0"></span><button class="button secondary" id="cancel-edit" type="button">Cancel</button><button class="button" id="save-product" type="submit">Save product</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/js/admin.js" defer></script>
+</body>
+</html>

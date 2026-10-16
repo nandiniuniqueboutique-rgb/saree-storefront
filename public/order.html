@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="Checkout for your Nandini Unique Boutique order.">
+  <title>Checkout | Nandini Unique Boutique</title>
+  <link rel="icon" href="https://nandhiniunique.com/assets/nandini-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper: #f8f6f0; --ink: #22251e; --muted: #62645b; --line: #deddd4; --green: #234d3c; --red: #d54a35; --white: #fffefa; --serif: "Playfair Display", Georgia, serif; --sans: "DM Sans", Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .topbar { display: flex; height: 76px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 0 max(22px, calc((100vw - 1160px) / 2)); }
+    .brand { display: inline-flex; align-items: center; gap: 9px; }
+    .brand img { width: 43px; height: 43px; object-fit: contain; }
+    .brand span { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--serif); font-size: 18px; font-weight: 700; }
+    .brand small { font-family: var(--sans); font-size: 9px; letter-spacing: .18em; }
+    .back-link { color: var(--green); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    main { width: min(1100px, calc(100% - 44px)); margin: 0 auto; padding: 58px 0 80px; }
+    .eyebrow { color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin: 13px 0 10px; font-family: var(--serif); font-size: clamp(38px, 5vw, 56px); font-weight: 500; }
+    .intro { max-width: 610px; margin-bottom: 34px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .order-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr); gap: 54px; align-items: start; }
+    .order-summary h2, .customer-form h2 { margin-bottom: 18px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .order-items { border-top: 1px solid var(--line); }
+    .order-item { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); padding: 15px 0; }
+    .order-item img { width: 76px; height: 96px; object-fit: cover; background: #e8e0d4; }
+    .order-item h3 { margin-bottom: 5px; font-family: var(--serif); font-size: 15px; font-weight: 500; }
+    .order-item p { margin-bottom: 10px; color: var(--muted); font-size: 12px; }
+    .quantity { display: inline-flex; height: 30px; align-items: center; border: 1px solid var(--line); }
+    .quantity button { width: 32px; height: 28px; border: 0; background: transparent; cursor: pointer; }
+    .quantity span { min-width: 22px; text-align: center; font-size: 12px; }
+    .line-total { align-self: start; padding-top: 4px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .totals { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .totals div { display: flex; justify-content: space-between; padding: 7px 0; font-size: 13px; }
+    .totals .grand { padding-top: 12px; font-size: 16px; font-weight: 700; }
+    .totals .note { color: var(--muted); font-size: 12px; }
+    .empty-state { padding: 24px 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .empty-state a { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .customer-form { border-top: 2px solid var(--green); padding-top: 20px; }
+    .field { display: grid; gap: 7px; margin-bottom: 15px; }
+    .field label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .field input, .field textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 0; padding: 11px 12px; background: var(--white); color: var(--ink); font-size: 16px; }
+    .field input:user-invalid, .field textarea:user-invalid { border-color: var(--red); }
+    .field textarea { min-height: 90px; resize: vertical; }
+    fieldset.pay { margin: 4px 0 18px; border: 0; padding: 0; }
+    fieldset.pay legend { margin-bottom: 9px; padding: 0; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .pay-option { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 8px; border: 1px solid var(--line); padding: 13px 14px; background: var(--white); cursor: pointer; }
+    .pay-option:has(input:checked) { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+    .pay-option input { margin-top: 3px; accent-color: var(--green); }
+    .pay-option strong { display: block; margin-bottom: 3px; font-size: 13px; }
+    .pay-option span { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .form-note { margin: 2px 0 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .button { display: inline-flex; width: 100%; min-height: 48px; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--green); background: var(--green); color: white; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .button:hover:not(:disabled) { border-color: var(--red); background: var(--red); }
+    .button:disabled { opacity: .45; cursor: not-allowed; }
+    .button.secondary { margin-top: 10px; border-color: var(--line); background: transparent; color: var(--green); }
+    .button.secondary:hover:not(:disabled) { border-color: var(--green); background: transparent; color: var(--green); }
+    .button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
+    .status { min-height: 18px; margin-top: 12px; color: var(--green); font-size: 13px; line-height: 1.6; }
+    .status.error { color: #b03a28; }
+    .secure { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--muted); font-size: 12px; }
+    .done { max-width: 620px; margin: 0 auto; text-align: center; }
+    .done .tick { display: grid; width: 64px; height: 64px; margin: 0 auto 22px; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 30px; }
+    .done h1 { margin-top: 0; }
+    .done .number { display: inline-block; margin: 10px 0 22px; border: 1px dashed var(--green); padding: 10px 20px; font-family: var(--serif); font-size: 26px; color: var(--green); }
+    .done p { color: #44463f; line-height: 1.8; }
+    .done .actions { display: grid; gap: 10px; margin-top: 26px; }
+    .done .actions a { display: flex; min-height: 48px; align-items: center; justify-content: center; border: 1px solid var(--green); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .done .actions a.primary { background: var(--green); color: white; }
+    @media (max-width: 760px) { main { padding-top: 43px; } .order-layout { grid-template-columns: 1fr; gap: 39px; } .customer-form { grid-row: 1; } }
+    @media (max-width: 420px) { .topbar { height: 68px; padding: 0 15px; } main { width: calc(100% - 30px); } .brand img { width: 36px; height: 36px; } .brand span { font-size: 15px; } .order-item { grid-template-columns: 62px minmax(0,1fr) auto; gap: 10px; } .order-item img { width: 62px; height: 82px; } .line-total { font-size: 12px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Nandini Unique Boutique home"><img src="https://nandhiniunique.com/assets/nandini-logo.svg" alt=""><span>NANDINI<small>UNIQUE BOUTIQUE</small></span></a>
+    <a class="back-link" href="/#collection">Back to shop</a>
+  </header>
+  <main id="main">
+    <div id="checkout">
+      <span class="eyebrow">Almost yours</span>
+      <h1>Checkout</h1>
+      <p class="intro">Review your selection, add your delivery details and choose how to pay.</p>
+      <div class="order-layout">
+        <section class="order-summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Your selection</h2>
+          <div class="order-items" id="order-items"><p class="empty-state">Loading your selection...</p></div>
+          <div class="totals" id="totals" hidden>
+            <div><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+            <div><span>Delivery</span><strong id="shipping">₹0</strong></div>
+            <div class="note" id="shipping-note" hidden></div>
+            <div class="grand"><span>Total</span><strong id="total">₹0</strong></div>
+          </div>
+        </section>
+        <form class="customer-form" id="order-form" novalidate>
+          <h2>Delivery details</h2>
+          <div class="field"><label for="customer-name">Full name</label><input id="customer-name" name="name" autocomplete="name" required minlength="2" maxlength="80"></div>
+          <div class="field"><label for="customer-phone">WhatsApp or mobile</label><input id="customer-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" minlength="10" pattern="[0-9+\-\s()]{10,}" title="Enter a valid mobile number, for example 98765 43210" required></div>
+          <div class="field"><label for="customer-email">Email (optional)</label><input id="customer-email" name="email" type="email" autocomplete="email" maxlength="120"></div>
+          <div class="field"><label for="customer-address">Delivery address</label><textarea id="customer-address" name="address" autocomplete="street-address" required minlength="10" maxlength="300"></textarea></div>
+          <div class="field"><label for="customer-city">City and PIN code</label><input id="customer-city" name="city" autocomplete="postal-code" required minlength="3" maxlength="80"></div>
+          <div class="field"><label for="customer-note">Note for the boutique</label><textarea id="customer-note" name="note" placeholder="Optional" maxlength="300"></textarea></div>
+          <fieldset class="pay" id="pay-options" hidden><legend>Payment</legend></fieldset>
+          <p class="form-note" id="pay-note"></p>
+          <button class="button" id="send-order" type="submit" disabled>Place order</button>
+          <button class="button secondary" id="whatsapp-enquiry" type="button" disabled>Prefer to chat first? Enquire on WhatsApp</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+          <p class="secure" id="secure" hidden>🔒 Payments are processed securely by Razorpay. We never see your card or UPI details.</p>
+        </form>
+      </div>
+    </div>
+    <section class="done" id="done" hidden aria-live="polite"></section>
+  </main>
+  <script src="/js/checkout.js" defer></script>
+</body>
+</html>

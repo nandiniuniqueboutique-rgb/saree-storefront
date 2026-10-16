@@ -1,0 +1,42 @@
+# Render Blueprint: one web service that serves the shop, the owner area, the API and the photo storage.
+# If Render rejects this file, create a "Web Service" by hand with the same values (see README.md, step 2).
+services:
+  - type: web
+    name: nandini-boutique
+    runtime: node
+    plan: starter            # paid instance: a persistent disk is not available on the free plan
+    buildCommand: npm install   # there are no npm packages; this just prepares the service
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: store-data
+      mountPath: /var/data   # holds store.db (products, orders) and uploads/ (photos)
+      sizeGB: 1              # about 8,000 product photos; can be increased later, never decreased
+    envVars:
+      - key: NODE_VERSION    # the built-in database needs Node 22.13 or newer
+        value: 22.22.0
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: STORE_NAME
+        value: Nandini Unique Boutique
+      - key: WHATSAPP_NUMBER
+        value: "917411211052"
+      - key: COD_ENABLED
+        value: "false"
+      - key: SHIPPING_FEE
+        value: "0"
+      - key: FREE_SHIPPING_ABOVE
+        value: "0"
+      # Secrets: Render asks you to type these in the dashboard (they are never stored in this file).
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD  # only needed for the first start; delete it after you have signed in
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false

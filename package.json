@@ -1,0 +1,16 @@
+{
+  "name": "nandini-unique-boutique",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Storefront, owner admin, photo storage and Razorpay checkout for Nandini Unique Boutique",
+  "type": "commonjs",
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --watch --disable-warning=ExperimentalWarning server/index.js",
+    "create-admin": "node --disable-warning=ExperimentalWarning server/scripts/create-admin.js",
+    "backup": "node --disable-warning=ExperimentalWarning server/scripts/backup.js",
+    "cleanup-uploads": "node --disable-warning=ExperimentalWarning server/scripts/cleanup-uploads.js",
+    "test": "node --no-warnings --test server/test/*.test.js"
+  }
+}
