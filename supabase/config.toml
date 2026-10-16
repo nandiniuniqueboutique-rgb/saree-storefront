@@ -1,0 +1,4 @@
+# Razorpay's servers call the webhook without a Supabase login token,
+# so it is the only function that skips the login check. Its own signature check protects it.
+[functions.razorpay-webhook]
+verify_jwt = false
